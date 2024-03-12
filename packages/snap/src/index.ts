@@ -1,5 +1,11 @@
-import type { OnRpcRequestHandler } from '@metamask/snaps-sdk';
-import { panel, text } from '@metamask/snaps-sdk';
+import type { OnHomePageHandler } from '@metamask/snaps-sdk';
+import { panel, copyable, heading, text } from '@metamask/snaps-sdk';
+import { InternalError } from '@metamask/snaps-sdk'; 
+
+async function getFC() { 
+  const response = await fetch("https://homerow.club/fc/?fid=4275"); 
+  return response.json() 
+}
 
 /**
  * Handle incoming JSON-RPC requests, sent through `wallet_invokeSnap`.
@@ -11,26 +17,18 @@ import { panel, text } from '@metamask/snaps-sdk';
  * @returns The result of `snap_dialog`.
  * @throws If the request method is not valid for this snap.
  */
-export const onRpcRequest: OnRpcRequestHandler = async ({
-  origin,
-  request,
-}) => {
-  switch (request.method) {
-    case 'hello':
-      return snap.request({
-        method: 'snap_dialog',
-        params: {
-          type: 'confirmation',
-          content: panel([
-            text(`Hello, **${origin}**!`),
-            text('This custom confirmation is just for display purposes.'),
-            text(
-              'But you can edit the snap source code to make it do something, if you want to!',
-            ),
-          ]),
-        },
-      });
-    default:
-      throw new Error('Method not found.');
-  }
+export const onHomePage: OnHomePageHandler = async () => {
+  return getFC().then(fc => {
+    // format data! 
+    try { 
+      const casts = fc.data.casts; 
+      return { content:  panel([
+        heading("Your feed"), 
+       ...casts.map((cast:any) => text(cast.content as string)),
+      ]) };
+    }
+    catch (error) { 
+      throw new InternalError(); 
+    }
+  }); 
 };
