@@ -7,10 +7,11 @@
     "url": "https://github.com/Montoya/farfeed-snap.git"
   },
   "source": {
-    "shasum": "uVlOLIzgDtbhSgQsic0wO4pu1uXsLc6ldmkui6Cn1CU=",
+    "shasum": "yGSBLV6N0y+KB5a2nIeaoDdbtsRr+AKQUi5N4NgvPDU=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
+        "iconPath": "images/farfeed.svg",
         "packageName": "farfeed-snap",
         "registry": "https://registry.npmjs.org/"
       }
