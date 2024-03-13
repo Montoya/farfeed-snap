@@ -44,6 +44,7 @@
           bottom:0;
           left:50%;
           margin-left:-430px;
+          padding-bottom:24px; 
         }
         #links { 
           float:right; 
@@ -58,7 +59,7 @@
       <h1><img src="icon.png" width="64" height="64" alt=""> Farfeed</h1>
       <h2>Follow the crowd.</h2>
       <p>Get the latest casts from the /metamask channel right inside of MetaMask!</p>
-      <div id="loading">Loading...</div>
+      <p id="loading">Loading...</p>
       <p>After installing the Snap, open the Snaps menu in MetaMask and click on Farfeed to view the feed.</p>
     </div>
     <div id="footer">
@@ -81,16 +82,8 @@ const MetaMaskFound = async (providerDetail) => {
 
   document.getElementById('loading').className = "found"; 
 
-  const row = document.createElement("p"); 
-  const icon = document.createElement("img"); 
-  icon.className = "icon"; 
-  icon.src = providerDetail.info.icon; 
-  row.appendChild(icon); 
-  const label = document.createElement("span"); 
-  label.textContent = providerDetail.info.name; 
-  row.appendChild(label); 
   const btn = document.createElement("button"); 
-  btn.className = "btn btn-primary btn-md"; 
+  btn.className = "btn btn-primary btn-lg"; 
   btn.textContent = "Install "+snapName; 
 
   const provider = providerDetail.provider; 
@@ -107,7 +100,6 @@ const MetaMaskFound = async (providerDetail) => {
       }); 
 
       if(result) { 
-
         try { 
           const snaps = await provider.request({
             method: 'wallet_getSnaps',
@@ -122,19 +114,13 @@ const MetaMaskFound = async (providerDetail) => {
             // the snap was not installed 
           }
         }
-        catch { 
-
-        }
-
+        catch { }
       }
-
     }
-    catch { 
-
-    }
+    catch { }
   }; 
-  row.appendChild(btn); 
-  document.getElementById('action').appendChild(row); 
+  document.getElementById('loading').textContent = "";
+  document.getElementById('loading').appendChild(btn); 
 
 }; 
 
@@ -172,8 +158,8 @@ window.onload = function() {
   setTimeout(() => { 
     if("found"!==document.getElementById('loading').className) { 
       /* Assume MetaMask was not detected */
-      document.getElementById('loading').className = "none"; 
-      document.getElementById('loading').textContent = "Please install MetaMask Flask";  
+      document.getElementById('loading').textContent = ""; 
+      document.getElementById('loading').insertAdjacentHTML("afterbegin", "Please install <a href='https://metamask.io/flask/'>MetaMask Flask</a> first.");  
     }
   }, 1000)
 
