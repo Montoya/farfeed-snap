@@ -1,4 +1,4 @@
-# Farfeed Snap
+# FarFeed Snap
 
 View the latest casts from the `/metamask` channel on Warpcast inside of a 
 MetaMask Snap! 
