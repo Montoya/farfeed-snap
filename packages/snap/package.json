@@ -1,6 +1,6 @@
 {
   "name": "farfeed-snap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Your Farcaster feed inside MetaMask.",
   "repository": {
     "type": "git",

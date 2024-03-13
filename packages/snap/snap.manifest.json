@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Your Farcaster feed inside MetaMask.",
   "proposedName": "FarFeed",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "https://github.com/Montoya/farfeed-snap.git"
   },
   "source": {
-    "shasum": "yGSBLV6N0y+KB5a2nIeaoDdbtsRr+AKQUi5N4NgvPDU=",
+    "shasum": "cB5Np7BRDD1WQgOL8lLJ3+fCAkiIJMHDU13kWvLiZ38=",
     "location": {
       "npm": {
         "filePath": "dist/bundle.js",
